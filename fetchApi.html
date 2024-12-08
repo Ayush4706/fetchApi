@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <style>
+        body{
+            background: bisque;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        button{
+            border: 1px solid blueviolet;
+            margin-bottom: 10px;
+            /* color: whitesmoke; */
+            border-radius: 20px;
+            padding: 10px;
+            height: 35px;
+            width: 150px;
+        }
+        td,th{
+            color: brown;
+            text-align: center;
+            vertical-align: middle;
+            padding: 5px;
+            border-color: beige;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        <button onclick="getData()">Get Data</button>
+        <table id="tab" border="1" style="border-spacing: 15px; padding: 5px;">
+            <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Title</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        
+    </table>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<script>
+    const getData=()=>{
+        const url="https://jsonplaceholder.typicode.com/todos"
+        fetch(url).
+        then((res)=>res.json()).then((data)=>data.forEach(element => {
+            console.log(element);
+            
+            const newRow=document.createElement('tr')
+            const newCol1=document.createElement('td')
+            const newCol2=document.createElement('td')
+            const newCol3=document.createElement('input')
+            newCol3.type='checkbox'
+            if(element.completed)
+            newCol3.checked=true;
+        newCol1.innerText=element.id
+        newCol2.innerText=element.title
+                newRow.appendChild(newCol1);
+                newRow.appendChild(newCol2);
+                newRow.appendChild(newCol3);
+                const tab=document.getElementById('tab')
+                tab.appendChild(newRow)
+                
+            }))
+        }
+        </script>
+</body>
+</html>
